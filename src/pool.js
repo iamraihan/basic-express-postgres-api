@@ -12,7 +12,7 @@ class Pool {
    */
   connect(options) {
     this._pool = new pg.Pool(options);
-    // return this._pool.query("SELECT 1 + 1 AS result"); //For Test connection
+    return this._pool.query("SELECT 1 + 1 AS result"); //For Test connection
   }
   close() {
     return this._pool.end();

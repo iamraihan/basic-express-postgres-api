@@ -1,4 +1,4 @@
-const app = require("./src/app.js");
+const app = require("./src/app");
 const pool = require("./src/pool");
 
 pool
@@ -10,10 +10,10 @@ pool
     password: "", // your password
   })
   .then(() => {
-    app().listen(3000, () => {
-      console.log("Server is running on port 3000");
+    app().listen(3005, () => {
+      console.log("Server is running on port 3005");
     });
   })
   .catch((err) => {
-    console.log(err);
+    console.error(err);
   });

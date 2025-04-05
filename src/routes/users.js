@@ -14,7 +14,11 @@ router.get("/user/:id", async (req, res) => {
     res.status(404).json({ message: "User not found" });
   }
 });
-router.post("/users", async (req, res) => {});
+router.post("/users", async (req, res) => {
+  const { username, bio } = req.body;
+  const user = await userRepo.insert(username, bio);
+  res.json(user);
+});
 router.put("/user/:id", async (req, res) => {});
 router.delete("/user/:id", async (req, res) => {});
 module.exports = router;

@@ -19,6 +19,19 @@ router.post("/users", async (req, res) => {
   const user = await userRepo.insert(username, bio);
   res.json(user);
 });
-router.put("/user/:id", async (req, res) => {});
+router.put("/user/:id", async (req, res) => {
+  const { id } = req.params;
+  const { username, bio } = req.body;
+  try {
+    const user = await userRepo.update(id, username, bio);
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ message: "User not found" });
+    }
+  } catch (error) {
+    res.status(400).json({ message: error.message });
+  }
+});
 router.delete("/user/:id", async (req, res) => {});
 module.exports = router;

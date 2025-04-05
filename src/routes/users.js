@@ -33,5 +33,13 @@ router.put("/user/:id", async (req, res) => {
     res.status(400).json({ message: error.message });
   }
 });
-router.delete("/user/:id", async (req, res) => {});
+router.delete("/user/:id", async (req, res) => {
+  const { id } = req.params;
+  const user = await userRepo.delete(id);
+  if (user) {
+    res.json(user);
+  } else {
+    res.status(404).json({ message: "User not found" });
+  }
+});
 module.exports = router;

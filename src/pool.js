@@ -17,9 +17,8 @@ class Pool {
   close() {
     return this._pool.end();
   }
-  // It has a big security issues
-  query(sql) {
-    return this._pool.query(sql);
+  query(sql, params) {
+    return this._pool.query(sql, params);
   }
 }
 module.exports = new Pool();

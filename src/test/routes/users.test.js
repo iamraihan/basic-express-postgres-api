@@ -13,20 +13,23 @@ beforeAll(() => {
   });
 });
 
+beforeEach(async () => {
+  await pool.query(`TRUNCATE users RESTART IDENTITY CASCADE;`);
+});
+
 afterAll(() => {
   return pool.close();
 });
 it("create a user", async () => {
   const startingCount = await UserRepo.count();
-  expect(startingCount).toEqual(0);
   await request(buildApp())
     .post("/users")
     .send({
-      username: "test",
-      bio: "test",
+      username: "testuser",
+      bio: "test bio",
     })
     .expect(200);
 
   const finishCount = await UserRepo.count();
-  expect(finishCount).toEqual(1);
+  expect(finishCount - startingCount).toEqual(1);
 });

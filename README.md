@@ -60,7 +60,7 @@ Runs the Jest test suite with Supertest for route testing.
 
 ```
 ├── app.js               # Express app config
-├── server.js            # Entry point to start the server
+├── index.js            # Entry point to start the server
 ├── pool.js              # PostgreSQL connection pool
 ├── repos/               # Repository layer for DB access
 ├── routes/              # Express route handlers
